@@ -16,6 +16,8 @@ public class Main {
         primeraVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
+        panelPrincipal.setLayout(new GridBagLayout());
+
 
 
 
