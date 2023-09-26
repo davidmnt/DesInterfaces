@@ -18,15 +18,16 @@ public class MiPrimeraVentana {
         //Panel principal
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBounds(10, 10, 200, 200);
+        panelPrincipal.setBackground(Color.cyan);
 
-       /* //Disposicion del panel de la clase FlowLayout
-
-        FlowLayout disposicionFlow = new FlowLayout(FlowLayout.LEFT,10,10); //hgap distancia entre los objetos y vgap distancia del borde de la ventana
-        panelPrincipal.setLayout(disposicionFlow); */
+       //Disposicion del panel de la clase FlowLayout
+        panelPrincipal.setLayout(new FlowLayout(FlowLayout.LEFT,10,10));
 
         //Disposicion del panel de la clase BorderLayout
-        panelPrincipal.setLayout(new BorderLayout());
-        //panelPrincipal.setLayout(new GridBagLayout());
+        //panelPrincipal.setLayout(new BorderLayout());
+
+        //Disposicion del panel de la clase GridBagLayout
+        panelPrincipal.setLayout(new GridBagLayout());
 
 
         JLabel nombre = new JLabel("Nombre:");
@@ -86,7 +87,7 @@ public class MiPrimeraVentana {
         panelPrincipal.add(TextDomicilio);
 
         //Boton de enviar
-        panelPrincipal.add(BotonEnviar, BorderLayout.SOUTH);
+        panelPrincipal.add(BotonEnviar);
 
         //Añadimos el panel con sus componentes a la ventana principal
         ventana.setContentPane(panelPrincipal);

@@ -13,31 +13,28 @@ public class Layout {
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel();
-
-
+        panel.setBounds(10,10,250,125);
         panel.setLayout(new BorderLayout(10,10));
+        panel.setBackground(Color.cyan);
 
         JButton boton1 = new JButton("Boton 1");
         JButton boton2 = new JButton("Boton 2");
         JButton boton3 = new JButton("Boton 3");
 
-
-        panel.add(boton1,BorderLayout.EAST);
-        panel.add(boton2,BorderLayout.WEST);
-        panel.add(boton3,BorderLayout.CENTER);
-
+        panel.add(boton1,BorderLayout.WEST);
+        panel.add(boton2,BorderLayout.CENTER);
+        panel.add(boton3,BorderLayout.EAST);
 
         JPanel panel2 = new JPanel();
+        panel2.setBounds(10,10,250,125);
         panel2.setLayout(new FlowLayout(FlowLayout.LEFT));
+        panel2.setBackground(Color.BLUE);
 
         JButton boton4 = new JButton("Boton 4");
         JButton boton5 = new JButton("Boton 5");
 
         panel2.add(boton4);
         panel2.add(boton5);
-
-
-
 
         ventana.add(panel,BorderLayout.NORTH);
         ventana.add(panel2,BorderLayout.SOUTH);
