@@ -18,16 +18,27 @@ public class MiPrimeraVentana {
         //Panel principal
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBounds(10, 10, 200, 200);
-        panelPrincipal.setBackground(Color.cyan);
 
-       //Disposicion del panel de la clase FlowLayout
-        panelPrincipal.setLayout(new FlowLayout(FlowLayout.LEFT,10,10));
+
+        JPanel panelLogo = new JPanel();
+
+        ImageIcon logo = new ImageIcon("C:\\Users\\DavidMontejanoM\\Desktop\\ImagenesInterfaz\\logo.jpg");
+        JLabel labelIcon = new JLabel(logo);
+        panelLogo.add(labelIcon);
+
+        JPanel titulo = new JPanel();
+        JLabel text = new JLabel("FORMULARIO");
+        titulo.add(text);
+
+
+        //Disposicion del panel de la clase FlowLayout
+        //panelPrincipal.setLayout(new FlowLayout(FlowLayout.LEFT,10,10));
 
         //Disposicion del panel de la clase BorderLayout
         //panelPrincipal.setLayout(new BorderLayout());
 
         //Disposicion del panel de la clase GridBagLayout
-        panelPrincipal.setLayout(new GridBagLayout());
+        panelPrincipal.setLayout(new GridLayout(7, 2,5,5));
 
 
         JLabel nombre = new JLabel("Nombre:");
@@ -90,8 +101,9 @@ public class MiPrimeraVentana {
         panelPrincipal.add(BotonEnviar);
 
         //Añadimos el panel con sus componentes a la ventana principal
-        ventana.setContentPane(panelPrincipal);
-
+        ventana.add(panelPrincipal, BorderLayout.CENTER);
+        ventana.add(panelLogo, BorderLayout.WEST);
+        ventana.add(titulo, BorderLayout.NORTH);
 
     }
 
