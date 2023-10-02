@@ -165,12 +165,6 @@ public class MiCalculadora {
         ActionListener ac = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String entrada = e.getActionCommand();
-
-                if(inicio){
-                    pantalla.setText("");
-                    inicio = false;
-                }
 
                 pantalla.setText("");
 
