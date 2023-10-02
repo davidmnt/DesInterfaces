@@ -127,7 +127,7 @@ public class GridBagLayout {
 
                 String entrada = boton.getText();
 
-                rellenar.setText(entrada);
+                rellenar.setText(rellenar.getText() +  entrada);
 
             }
         };
