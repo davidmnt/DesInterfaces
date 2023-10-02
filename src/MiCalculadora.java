@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 
 public class MiCalculadora {
 
-    private static boolean inicio;
+
 
     public static void main(String[] args) {
-        inicio = true;
+
 
         //Creamos el objeto de la clase JFrame
         JFrame ventana = new JFrame();
@@ -29,18 +29,13 @@ public class MiCalculadora {
         ventana.add(panelPantalla, BorderLayout.NORTH);
         ventana.add(panelBotones,BorderLayout.CENTER);
 
-
-
-
     }
-
     private static void panelPantalla(JPanel panelPantalla ){
 
         JButton pantalla = new JButton("0");
         pantalla.setEnabled(false);
         panelPantalla.add(pantalla);
     }
-
     private static void panelBotones(JPanel panelBotones){
 
         panelBotones.setLayout(new GridLayout(5,4,5,5));
@@ -95,6 +90,7 @@ public class MiCalculadora {
         panelBotones.add(botonIgual);
 
         JButton botonBorrar = new JButton("AC");
+        botonBorrar.setBackground(Color.orange);
         panelBotones.add(botonBorrar);
 
     }
