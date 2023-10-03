@@ -16,13 +16,28 @@ public class FlowLayout {
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel();
-        panel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        panel.setLayout(new java.awt.FlowLayout());
 
         JButton boton1 = new JButton("Boton 1");
         JButton boton2 = new JButton("Boton 2");
+        JButton boton3 = new JButton("Boton 3");
+        JButton boton4 = new JButton("long-named button 4");
+        JButton boton5 = new JButton("5");
+
+        JRadioButton radio = new JRadioButton("left to right");
+        JRadioButton radio1 = new JRadioButton("right to left");
+
+        JButton boton6 = new JButton("Boton 6");
+
 
         panel.add(boton1);
         panel.add(boton2);
+        panel.add(boton3);
+        panel.add(boton4);
+        panel.add(boton5);
+        panel.add(radio);
+        panel.add(radio1);
+        panel.add(boton6);
 
 
 
