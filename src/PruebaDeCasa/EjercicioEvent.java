@@ -9,34 +9,21 @@ public class EjercicioEvent {
 
         JFrame ventana = new JFrame();
         ventana.setBounds(0,0,500,500);
-
         ventana.setVisible(true);
-        ventana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panelPirn = new JPanel();
-        panelPirn.setBounds(0,0,250,250);
+        panelPirn.setBounds(0,0,500,500);
         panelPirn.setLayout(new GridBagLayout());
 
         JLabel lblList = new JLabel("JList");
         lblList.addMouseListener(color(lblList));
-        lblList.setFont(new Font("Arial",Font.PLAIN,30));
-        lblList.setBorder(BorderFactory.createLoweredBevelBorder());
-        panelPirn.add(lblList,
-                new GridBagConstraints(
-                        0,
-                        0,
-                        1,
-                        1,
-                        1.0,
-                        1.0,
-                        GridBagConstraints.CENTER,
-                        GridBagConstraints.HORIZONTAL,
-                        new Insets(10,20,0,0),
-                        0,
-                        0
-                ));
+        lblList.setFont(new Font("Arial", Font.BOLD, 30));
+        lblList.setHorizontalAlignment(JTextField.CENTER);
 
-        JTextField añadir = new JTextField(20);
+        panelPirn.add(lblList);
+
+        JTextField añadir = new JTextField();
         panelPirn.add(añadir,
                 new GridBagConstraints(
                         0,
@@ -46,8 +33,8 @@ public class EjercicioEvent {
                         1.0,
                         1.0,
                         GridBagConstraints.NORTH,
-                        GridBagConstraints.CENTER,
-                        new Insets(0,0,0,0),
+                        GridBagConstraints.HORIZONTAL,
+                        new Insets(0,10,0,10),
                         0,
                         0
                 ));
@@ -63,7 +50,7 @@ public class EjercicioEvent {
                         1.0,
                         GridBagConstraints.NORTH,
                         GridBagConstraints.HORIZONTAL,
-                        new Insets(0,0,0,5),
+                        new Insets(0,10,0,10),
                         0,
                         0
                 ));
