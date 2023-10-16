@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MiCalculadora {
+public class ProyectoCalculadora {
 
 
     private static boolean inicio;
@@ -21,14 +21,11 @@ public class MiCalculadora {
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JLabel titulo = new JLabel("CALCULADORA");
 
-
         JPanel panelPantalla = new JPanel();
         panelPantalla(panelPantalla);
 
-
         JPanel panelBotones = new JPanel();
         panelBotones(panelBotones);
-
 
         ventana.add(panelPantalla, BorderLayout.NORTH);
         ventana.add(panelBotones,BorderLayout.CENTER);
@@ -40,13 +37,34 @@ public class MiCalculadora {
         pantalla = new JTextField(27);
         panelPantalla.setBounds(10,10,350,400);
         pantalla.setEnabled(false);
-
         panelPantalla.add(pantalla);
+
     }
+
     private static void panelBotones(JPanel panelBotones){
 
         panelBotones.setLayout(new GridLayout(5,4,10,10));
         panelBotones.setBounds(10,10,350,400);
+
+        JButton botonBorrar = new JButton("AC");
+        botonBorrar.setBackground(Color.gray);
+        panelBotones.add(botonBorrar);
+        botonBorrar.addActionListener(accionBotonAC(pantalla));
+
+        JButton MasMenos = new JButton("+/-");
+        MasMenos.setBackground(Color.gray);
+        panelBotones.add(MasMenos);
+        MasMenos.addActionListener(accionBotonAC(pantalla));
+
+        JButton porcentaje = new JButton("%");
+        porcentaje.setBackground(Color.gray);
+        panelBotones.add(porcentaje);
+        porcentaje.addActionListener(accionBotonAC(pantalla));
+
+        JButton raizCuadrada = new JButton("√ ");
+        raizCuadrada.setBackground(Color.ORANGE);
+        panelBotones.add(raizCuadrada);
+        // raizCuadrada.addActionListener(accionBotonRaizCuadrada(pantalla));
 
         JButton boton7 = new JButton("7");
         boton7.setBackground(Color.white);
@@ -63,7 +81,7 @@ public class MiCalculadora {
         panelBotones.add(boton9);
         boton9.addActionListener(accionBotones(pantalla));
 
-        JButton botonDividir = new JButton("/");
+        JButton botonDividir = new JButton("÷");
         botonDividir.setBackground(Color.ORANGE);
         panelBotones.add(botonDividir);
         botonDividir.addActionListener(accionBotones(pantalla));
@@ -83,10 +101,11 @@ public class MiCalculadora {
         panelBotones.add(boton6);
         boton6.addActionListener(accionBotones(pantalla));
 
-        JButton botonMulti = new JButton("*");
+        JButton botonMulti = new JButton("×");
         botonMulti.setBackground(Color.ORANGE);
         panelBotones.add(botonMulti);
         botonMulti.addActionListener(accionBotones(pantalla));
+
 
         JButton boton1 = new JButton("1");
         boton1.setBackground(Color.white);
@@ -108,48 +127,31 @@ public class MiCalculadora {
         panelBotones.add(botonResta);
         botonResta.addActionListener(accionBotones(pantalla));
 
-        JButton botonComa = new JButton(",");
-        botonComa.setBackground(Color.white);
-        panelBotones.add(botonComa);
-        botonComa.addActionListener(accionBotones(pantalla));
-
         JButton boton0 = new JButton("0");
         boton0.setBackground(Color.white);
         panelBotones.add(boton0);
         boton0.addActionListener(accionBotones(pantalla));
 
-        JButton botonSuma = new JButton("+");
-        botonSuma.setBackground(Color.ORANGE);
-        panelBotones.add(botonSuma);
-        botonSuma.addActionListener(accionBotones(pantalla));
+        JButton botonComa = new JButton(",");
+        botonComa.setBackground(Color.white);
+        panelBotones.add(botonComa);
+        botonComa.addActionListener(accionBotones(pantalla));
 
         JButton botonIgual = new JButton("=");
         botonIgual.setBackground(Color.ORANGE);
         panelBotones.add(botonIgual);
         botonIgual.addActionListener(accionBotonIgual(pantalla));
 
-        JButton MasMenos = new JButton("+/-");
-        MasMenos.setBackground(Color.ORANGE);
-        panelBotones.add(MasMenos);
-        MasMenos.addActionListener(accionBotonAC(pantalla));
+        JButton botonSuma = new JButton("+");
+        botonSuma.setBackground(Color.ORANGE);
+        panelBotones.add(botonSuma);
+        botonSuma.addActionListener(accionBotones(pantalla));
 
-        JButton porcentaje = new JButton("%");
-        porcentaje.setBackground(Color.ORANGE);
-        panelBotones.add(porcentaje);
-        porcentaje.addActionListener(accionBotonAC(pantalla));
 
-        JButton botonBorrar = new JButton("AC");
-        botonBorrar.setBackground(Color.ORANGE);
-        panelBotones.add(botonBorrar);
-        botonBorrar.addActionListener(accionBotonAC(pantalla));
 
-        JButton raizCuadrada = new JButton("√ ");
-        raizCuadrada.setBackground(Color.ORANGE);
-        panelBotones.add(raizCuadrada);
-        // raizCuadrada.addActionListener(accionBotonRaizCuadrada(pantalla));
     }
 
-   private static ActionListener accionBotones(JTextField pantalla){
+    private static ActionListener accionBotones(JTextField pantalla){
 
         ActionListener ac = new ActionListener() {
             @Override
@@ -157,8 +159,8 @@ public class MiCalculadora {
                 String entrada = e.getActionCommand();
 
                 if(inicio){
-                 pantalla.setText("");
-                 inicio = false;
+                    pantalla.setText("");
+                    inicio = false;
                 }
 
                 pantalla.setText(pantalla.getText() + entrada);
@@ -167,7 +169,6 @@ public class MiCalculadora {
         };
         return ac;
     }
-
     private static ActionListener accionBotonAC(JTextField pantalla){
 
         ActionListener ac = new ActionListener() {
@@ -181,29 +182,7 @@ public class MiCalculadora {
         return ac;
     }
 
-    /*private static ActionListener accionBotonRaizCuadrada(JTextField pantalla){
-
-        ActionListener ac = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String entrada = e.getActionCommand();
-
-                if(inicio){
-                    pantalla.setText("");
-                    inicio = false;
-                }
-
-                double num = Integer.parseInt(entrada);
-                double resultInt = Math.sqrt(num);
-                String result = " " + resultInt;
-                pantalla.setText(result);
-
-            }
-        };
-        return ac;
-    }*/
-
-    private static ActionListener accionBotonIgual(JTextField pantalla){
+    private static ActionListener accionBotonIgual(JTextField pantalla) {
 
         ActionListener ac = new ActionListener() {
             @Override
@@ -218,18 +197,18 @@ public class MiCalculadora {
                 char[] numChar = pantalla.getText().toString().toCharArray();
 
                 //Hacemos un bucle para sacar el primer numero hasta el signo de operacion
-                for(int i=0;i<numChar.length;i++){
+                for (int i = 0; i < numChar.length; i++) {
 
                     //Forzamos un break para una vez llegado al signo pare de concatenar numeros al num1
-                    if(numChar[i] == '+' || numChar[i] =='-' || numChar[i] =='*' || numChar[i] =='/'){
+                    if (numChar[i] == '+' || numChar[i] == '-' || numChar[i] == '×' || numChar[i] == '÷') {
                         break;
                     }
-                    num1 +=pantalla.getText().toString().charAt(i);
+                    num1 += pantalla.getText().toString().charAt(i);
                     contTotal++;
 
                 }
                 //Luego hacemos otro bucle para para sacra el num2 inicializando el cont del for anterior +1
-                for(int i=contTotal+1;i<numChar.length;i++){
+                for (int i = contTotal + 1; i < numChar.length; i++) {
                     num2 += String.valueOf(pantalla.getText().toString().charAt(i));
                 }
 
@@ -239,14 +218,18 @@ public class MiCalculadora {
                 char operacion = pantalla.getText().toString().charAt(contTotal);
 
                 //Segun el signo hacemos la operacion correspondiente
-                switch (operacion){
-                    case '+': result = numero1 + numero2;
+                switch (operacion) {
+                    case '+':
+                        result = numero1 + numero2;
                         break;
-                    case '-': result = numero1 - numero2;
+                    case '-':
+                        result = numero1 - numero2;
                         break;
-                    case '/': result = numero1 / numero2;
+                    case '÷':
+                        result = numero1 / numero2;
                         break;
-                    case '*': result = numero1 * numero2;
+                    case '×':
+                        result = numero1 * numero2;
                 }
 
                 String resultado = "" + result;
@@ -256,10 +239,5 @@ public class MiCalculadora {
         };
         return ac;
     }
-
-
-
-
-
 
 }
