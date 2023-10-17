@@ -91,6 +91,7 @@ public class ProyectoCalculadora {
                 ));
 
         pantalla = new JTextField();
+        pantalla.setEnabled(false);
         panelPantalla.add(pantalla,
                 new GridBagConstraints(
                         0,
