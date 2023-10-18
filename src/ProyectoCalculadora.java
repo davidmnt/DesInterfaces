@@ -38,6 +38,7 @@ public class ProyectoCalculadora {
         ventana.add(panelPantalla, BorderLayout.NORTH);
         ventana.add(panelBotones, BorderLayout.CENTER);
 
+
     }
 
     private static void panelPantalla(JPanel panelPantalla) {
@@ -349,7 +350,7 @@ public class ProyectoCalculadora {
         boton0.setBackground(Color.white);
         panelBotones.add(boton0,
                 new GridBagConstraints(
-                        0,
+                        1,
                         3,
                         1,
                         1,
@@ -368,7 +369,7 @@ public class ProyectoCalculadora {
         botonComa.setBackground(Color.white);
         panelBotones.add(botonComa,
                 new GridBagConstraints(
-                        1,
+                        0,
                         3,
                         1,
                         1,
@@ -617,11 +618,6 @@ public class ProyectoCalculadora {
                 pantalla1.setText(numPantalla + " " + monedaCambio1 + " " + resultString + " " + monedaCambio2);
 
 
-               /* monedas.add("Euros");
-                monedas.add("Dolar");
-                monedas.add("Yens");
-                monedas.add("Pesos(Argentinos)");
-                monedas.add("Libra");*/
 
             }
         };
