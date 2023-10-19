@@ -128,7 +128,7 @@ public class MiCalculadora {
         JButton botonIgual = new JButton("=");
         botonIgual.setBackground(Color.ORANGE);
         panelBotones.add(botonIgual);
-        botonIgual.addActionListener(accionBotonIgual(pantalla));
+       // botonIgual.addActionListener(accionBotonIgual(pantalla));
 
         JButton MasMenos = new JButton("+/-");
         MasMenos.setBackground(Color.ORANGE);
@@ -200,7 +200,7 @@ public class MiCalculadora {
     }
 
 
-    private static ActionListener accionBotonIgual(JTextField pantalla){
+   /* private static ActionListener accionBotonIgual(JTextField pantalla){
 
         ActionListener ac = new ActionListener() {
             @Override
@@ -305,7 +305,7 @@ public class MiCalculadora {
             }
         };
         return ac;
-    }
+    }*/
 
 
 
