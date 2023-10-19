@@ -14,6 +14,7 @@ public class ProyectoCalculadora {
     private static JTextField pantalla1;
     private static JComboBox<String> cambio1;
     private static JComboBox<String> cambio2;
+    private static JLabel pantallaError;
     private static ArrayList<String> monedas = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -350,9 +351,9 @@ public class ProyectoCalculadora {
         boton0.setBackground(Color.white);
         panelBotones.add(boton0,
                 new GridBagConstraints(
-                        1,
+                        0,
                         3,
-                        1,
+                        2,
                         1,
                         1.0,
                         1.0,
@@ -365,7 +366,7 @@ public class ProyectoCalculadora {
         boton0.addActionListener(accionBotones());
 
 
-        JButton botonComa = new JButton(",");
+      /*  JButton botonComa = new JButton(",");
         botonComa.setBackground(Color.white);
         panelBotones.add(botonComa,
                 new GridBagConstraints(
@@ -382,7 +383,7 @@ public class ProyectoCalculadora {
                         0
                 ));
         botonComa.addActionListener(accionBotones());
-
+*/
 
         JButton botonIgual = new JButton("=");
         botonIgual.setBackground(Color.ORANGE);
@@ -421,6 +422,21 @@ public class ProyectoCalculadora {
                 ));
         botonBorrar.addActionListener(accionBotonAC());
 
+        pantallaError = new JLabel();
+        panelBotones.add(pantallaError,
+                new GridBagConstraints(
+                        0,
+                        5,
+                        3,
+                        1,
+                        1.0,
+                        1.0,
+                        GridBagConstraints.CENTER,
+                        GridBagConstraints.BOTH,
+                        new Insets(10,10,10,10),
+                        0,
+                        0
+                ));
 
     }
 
@@ -480,6 +496,10 @@ public class ProyectoCalculadora {
         ActionListener ac = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                try {
+
+
                 String monedaCambio1;
                 String monedaCambio2;
 
@@ -520,104 +540,113 @@ public class ProyectoCalculadora {
                 monedaCambio1 = (String) cambio1.getSelectedItem();
                 monedaCambio2 = (String) cambio2.getSelectedItem();
 
+                if(monedaCambio1 == monedaCambio2){
+                    pantallaError.setText("Las monedas no pueden ser iguales");
 
-                switch (monedaCambio1) {
+                }else {
 
-                    //EUROS A OTRA MONEDA
-                    case "Euros":
-                        switch (monedaCambio2) {
-                            case "Dolar":
-                                resultNumerico = numPantalla * EUROSDOLAR;
-                                break;
-                            case "Yens":
-                                resultNumerico = numPantalla * EUROSYEN;
-                                break;
-                            case "Libra":
-                                resultNumerico = numPantalla * EUROSLIBRA;
-                                break;
-                            case "Pesos(Argentinos)":
-                                resultNumerico = numPantalla * EUROSPESOS;
-                                break;
-                        }
-                        break;
 
-                    //DOLAR A OTRA MONEDA
-                    case "Dolar":
-                        switch (monedaCambio2) {
-                            case "Euros":
-                                resultNumerico = numPantalla * DOLAREURO;
-                                break;
-                            case "Yens":
-                                resultNumerico = numPantalla * DOLARYEN;
-                                break;
-                            case "Libra":
-                                resultNumerico = numPantalla * DOLARLIBRA;
-                                break;
-                            case "Pesos(Argentinos)":
-                                resultNumerico = numPantalla * DOLARPESOS;
-                                break;
-                        }
-                        break;
+                    switch (monedaCambio1) {
 
-                    //YEN A OTRA MONEDA
-                    case "Yens":
-                        switch (monedaCambio2) {
-                            case "Euros":
-                                resultNumerico = numPantalla * YENEURO;
-                                break;
-                            case "Dolar":
-                                resultNumerico = numPantalla * YENDOLAR;
-                                break;
-                            case "Libra":
-                                resultNumerico = numPantalla * YENLIBRA;
-                                break;
-                            case "Pesos(Argentinos)":
-                                resultNumerico = numPantalla * YENPESOS;
-                                break;
-                        }
-                        break;
+                        //EUROS A OTRA MONEDA
+                        case "Euros":
+                            switch (monedaCambio2) {
+                                case "Dolar":
+                                    resultNumerico = numPantalla * EUROSDOLAR;
+                                    break;
+                                case "Yens":
+                                    resultNumerico = numPantalla * EUROSYEN;
+                                    break;
+                                case "Libra":
+                                    resultNumerico = numPantalla * EUROSLIBRA;
+                                    break;
+                                case "Pesos(Argentinos)":
+                                    resultNumerico = numPantalla * EUROSPESOS;
+                                    break;
+                            }
+                            break;
 
-                    //LIBRA A OTRA MONEDA
-                    case "Libra":
-                        switch (monedaCambio2) {
-                            case "Euros":
-                                resultNumerico = numPantalla * LIBRAEURO;
-                                break;
-                            case "Dolar":
-                                resultNumerico = numPantalla * LIBRADOLAR;
-                                break;
-                            case "Yens":
-                                resultNumerico = numPantalla * LIBRAYEN;
-                                break;
-                            case "Pesos(Argentinos)":
-                                resultNumerico = numPantalla * LIBRAPESOS;
-                                break;
-                        }
-                        break;
+                        //DOLAR A OTRA MONEDA
+                        case "Dolar":
+                            switch (monedaCambio2) {
+                                case "Euros":
+                                    resultNumerico = numPantalla * DOLAREURO;
+                                    break;
+                                case "Yens":
+                                    resultNumerico = numPantalla * DOLARYEN;
+                                    break;
+                                case "Libra":
+                                    resultNumerico = numPantalla * DOLARLIBRA;
+                                    break;
+                                case "Pesos(Argentinos)":
+                                    resultNumerico = numPantalla * DOLARPESOS;
+                                    break;
+                            }
+                            break;
 
-                    //PESOS A OTRA MONEDA
-                    case "Pesos(Argentinos)":
-                        switch (monedaCambio2) {
-                            case "Euros":
-                                resultNumerico = numPantalla * PESOSEURO;
-                                break;
-                            case "Dolar":
-                                resultNumerico = numPantalla * PESOSDOLAR;
-                                break;
-                            case "Yens":
-                                resultNumerico = numPantalla * PESOSYEN;
-                                break;
-                            case "Libra":
-                                resultNumerico = numPantalla * PESOSLIBRA;
-                                break;
-                        }
-                        break;
+                        //YEN A OTRA MONEDA
+                        case "Yens":
+                            switch (monedaCambio2) {
+                                case "Euros":
+                                    resultNumerico = numPantalla * YENEURO;
+                                    break;
+                                case "Dolar":
+                                    resultNumerico = numPantalla * YENDOLAR;
+                                    break;
+                                case "Libra":
+                                    resultNumerico = numPantalla * YENLIBRA;
+                                    break;
+                                case "Pesos(Argentinos)":
+                                    resultNumerico = numPantalla * YENPESOS;
+                                    break;
+                            }
+                            break;
+
+                        //LIBRA A OTRA MONEDA
+                        case "Libra":
+                            switch (monedaCambio2) {
+                                case "Euros":
+                                    resultNumerico = numPantalla * LIBRAEURO;
+                                    break;
+                                case "Dolar":
+                                    resultNumerico = numPantalla * LIBRADOLAR;
+                                    break;
+                                case "Yens":
+                                    resultNumerico = numPantalla * LIBRAYEN;
+                                    break;
+                                case "Pesos(Argentinos)":
+                                    resultNumerico = numPantalla * LIBRAPESOS;
+                                    break;
+                            }
+                            break;
+
+                        //PESOS A OTRA MONEDA
+                        case "Pesos(Argentinos)":
+                            switch (monedaCambio2) {
+                                case "Euros":
+                                    resultNumerico = numPantalla * PESOSEURO;
+                                    break;
+                                case "Dolar":
+                                    resultNumerico = numPantalla * PESOSDOLAR;
+                                    break;
+                                case "Yens":
+                                    resultNumerico = numPantalla * PESOSYEN;
+                                    break;
+                                case "Libra":
+                                    resultNumerico = numPantalla * PESOSLIBRA;
+                                    break;
+                            }
+                            break;
+                    }
+
+                    resultString = resultNumerico + "";
+                    pantalla1.setText(numPantalla + " " + monedaCambio1 + " " + resultString + " " + monedaCambio2);
+
                 }
 
-                resultString = resultNumerico + "";
-                pantalla1.setText(numPantalla + " " + monedaCambio1 + " " + resultString + " " + monedaCambio2);
-
-
+                }catch (NumberFormatException ei){
+                    pantallaError.setText("No puedes dejar el campo vacio, introduce parametros");
+                }
 
             }
         };
