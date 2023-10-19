@@ -2,12 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MiCalculadora {
 
 
     private static boolean inicio;
     private static JTextField pantalla;
+    private static ArrayList<Double> ArrayNumeros;
     public static void main(String[] args) {
         inicio = true;
 
@@ -167,6 +169,22 @@ public class MiCalculadora {
         };
         return ac;
     }
+    private static ActionListener accionBotonSuma(JTextField pantalla){
+
+        ActionListener ac = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String num = pantalla.getText().toString();
+                Double numDouble = Double.parseDouble(num);
+                ArrayNumeros.add(numDouble);
+
+                pantalla.setText(pantalla.getText() + "+");
+
+            }
+        };
+        return ac;
+    }
 
     private static ActionListener accionBotonAC(JTextField pantalla){
 
@@ -181,76 +199,108 @@ public class MiCalculadora {
         return ac;
     }
 
-    /*private static ActionListener accionBotonRaizCuadrada(JTextField pantalla){
-
-        ActionListener ac = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String entrada = e.getActionCommand();
-
-                if(inicio){
-                    pantalla.setText("");
-                    inicio = false;
-                }
-
-                double num = Integer.parseInt(entrada);
-                double resultInt = Math.sqrt(num);
-                String result = " " + resultInt;
-                pantalla.setText(result);
-
-            }
-        };
-        return ac;
-    }*/
 
     private static ActionListener accionBotonIgual(JTextField pantalla){
 
         ActionListener ac = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int result = 0;
-                int contTotal = 0;
-                String num1 = "";
-                String num2 = "";
+                double result = 0;
+                char operacion = 0;
+                char operacion2 = 0;
 
-                //pasamos el numero a un Array de char
 
-                char[] numChar = pantalla.getText().toString().toCharArray();
 
-                //Hacemos un bucle para sacar el primer numero hasta el signo de operacion
-                for(int i=0;i<numChar.length;i++){
+                    //Segun el signo hacemos la operacion correspondiente
+                    switch (operacion) {
+                        case '+':
+                            switch (operacion2){
+                                case '+':
+                                    result = numero1+numero2+numero3;
+                                    break;
+                                case '-':
+                                    result = numero1 + numero2 - numero3;
+                                    break;
+                                case '*':
+                                    result = numero1+numero2*numero3;
+                                    break;
+                                case '/':
+                                    result = numero1+numero2/numero3;
+                                    break;
+                            }
+                            break;
 
-                    //Forzamos un break para una vez llegado al signo pare de concatenar numeros al num1
-                    if(numChar[i] == '+' || numChar[i] =='-' || numChar[i] =='*' || numChar[i] =='/'){
-                        break;
+                        case '-':
+                            switch (operacion2){
+                                case '+':
+                                    result = numero1- numero2+numero3;
+                                    break;
+                                case '-':
+                                    result = numero1 - numero2 - numero3;
+                                    break;
+                                case '*':
+                                    result = numero1-numero2*numero3;
+                                    break;
+                                case '/':
+                                    result = numero1-numero2/numero3;
+                                    break;
+                            }
+                            break;
+                        case '/':
+                            switch (operacion2){
+                                case '+':
+                                    result = numero1/numero2+numero3;
+                                    break;
+                                case '-':
+                                    result = numero1 / numero2 - numero3;
+                                    break;
+                                case '*':
+                                    result = numero1/numero2*numero3;
+                                    break;
+                                case '/':
+                                    result = numero1/numero2/numero3;
+                                    break;
+                            }
+                            break;
+                        case '*':
+                            switch (operacion2){
+                                case '+':
+                                    result = numero1*numero2+numero3;
+                                    break;
+                                case '-':
+                                    result = numero1 * numero2 - numero3;
+                                    break;
+                                case '*':
+                                    result = numero1*numero2*numero3;
+                                    break;
+                                case '/':
+                                    result = numero1*numero2/numero3;
+                            }
                     }
-                    num1 +=pantalla.getText().toString().charAt(i);
-                    contTotal++;
 
-                }
-                //Luego hacemos otro bucle para para sacra el num2 inicializando el cont del for anterior +1
-                for(int i=contTotal+1;i<numChar.length;i++){
-                    num2 += String.valueOf(pantalla.getText().toString().charAt(i));
-                }
+                }else {
 
-                //Pasamos los numeros de String a int
-                int numero1 = Integer.parseInt(num1);
-                int numero2 = Integer.parseInt(num2);
-                char operacion = pantalla.getText().toString().charAt(contTotal);
-
-                //Segun el signo hacemos la operacion correspondiente
-                switch (operacion){
-                    case '+': result = numero1 + numero2;
-                        break;
-                    case '-': result = numero1 - numero2;
-                        break;
-                    case '/': result = numero1 / numero2;
-                        break;
-                    case '*': result = numero1 * numero2;
+                    //Segun el signo hacemos la operacion correspondiente
+                    switch (operacion) {
+                        case '+':
+                            result = numero1 + numero2;
+                            break;
+                        case '-':
+                            result = numero1 - numero2;
+                            break;
+                        case '/':
+                            result = numero1 / numero2;
+                            break;
+                        case '*':
+                            result = numero1 * numero2;
+                    }
                 }
 
-                String resultado = "" + result;
-                pantalla.setText(resultado);
+                    //Pasamos el resultado double a String para pasarlo por pantalla
+                    String resultado = "" + result;
+
+
+                    pantalla.setText(resultado);
 
             }
         };
