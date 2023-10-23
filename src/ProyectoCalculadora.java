@@ -44,6 +44,9 @@ public class ProyectoCalculadora {
 
     private static void panelPantalla(JPanel panelPantalla) {
 
+        //Creo un metodo para las pantallas y desplegables
+        //Inicializo el array de monedas para despues meter el array en los desplegables.
+
         monedas.add("Euros");
         monedas.add("Dolar");
         monedas.add("Yens");
@@ -51,14 +54,13 @@ public class ProyectoCalculadora {
         monedas.add("Libra");
 
         panelPantalla.setLayout(new GridBagLayout());
-        panelPantalla.repaint();
-        panelPantalla.revalidate();
-        panelPantalla.setBounds(10, 10, 400, 450);
 
         cambio1 = new JComboBox<>();
         for (String e : monedas) {
             cambio1.addItem(e);
         }
+
+        //Titulo de la app
 
         JLabel titulo = new JLabel("Conversor de Monedas");
         titulo.setFont(new Font("Arial",Font.BOLD,20));
@@ -77,6 +79,7 @@ public class ProyectoCalculadora {
                         0
                 ));
 
+        //Desplegable1 para solicitar el dinero a cambiar
         panelPantalla.add(cambio1,
                 new GridBagConstraints(
                         0,
@@ -92,7 +95,9 @@ public class ProyectoCalculadora {
                         0
                 ));
 
+        //La pantalla donde se introducira la cantidad a cambiar
         pantalla = new JTextField();
+        //Esta sentencia es para que el usuario no pueda escribir si no que tengan que hacer uso del teclado numerico de la app
         pantalla.setEnabled(false);
         panelPantalla.add(pantalla,
                 new GridBagConstraints(
@@ -125,11 +130,13 @@ public class ProyectoCalculadora {
                         0
                 ));
 
+        //Desplegable2 donde se seleccionara a que monedas quieres cambiar el dinero
         cambio2 = new JComboBox<>();
         for (String e : monedas) {
             cambio2.addItem(e);
         }
 
+        //Desplegable2 donde se seleccionara a que monedas quieres cambiar el dinero
         panelPantalla.add(cambio2,
                 new GridBagConstraints(
                         2,
@@ -145,6 +152,7 @@ public class ProyectoCalculadora {
                         0
                 ));
 
+        //Pantalla donde se imprimira el resultado
         pantalla1 = new JTextField();
         pantalla1.setEnabled(false);
         panelPantalla.add(pantalla1,
@@ -165,13 +173,18 @@ public class ProyectoCalculadora {
     }
 
     private static void panelBotones(JPanel panelBotones) {
-        int top = 10;
-        int left = 10;
-        int botton = 10;
-        int right = 10;
+
+        //Creo un metodo para colocar todos los botones
+
+        //Creo unas variables para cambiar los margenes de todos los botones
+        final int TOP = 10;
+        final int LEFT = 10;
+        final int BOTTON = 10;
+        final int RIGHT = 10;
 
         panelBotones.setLayout(new GridBagLayout());
         panelBotones.setBounds(10, 10, 350, 400);
+
 
 
         JButton boton7 = new JButton("7");
@@ -186,7 +199,7 @@ public class ProyectoCalculadora {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.BOTH,
-                        new Insets(top,left,botton,right),
+                        new Insets(TOP,LEFT,BOTTON,RIGHT),
                         0,
                         0
                 ));
@@ -205,7 +218,7 @@ public class ProyectoCalculadora {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.BOTH,
-                        new Insets(top,left,botton,right),
+                        new Insets(TOP,LEFT,BOTTON,RIGHT),
                         0,
                         0
                 ));
@@ -224,7 +237,7 @@ public class ProyectoCalculadora {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.BOTH,
-                        new Insets(top,left,botton,right),
+                        new Insets(TOP,LEFT,BOTTON,RIGHT),
                         0,
                         0
                 ));
@@ -244,7 +257,7 @@ public class ProyectoCalculadora {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.BOTH,
-                        new Insets(top,left,botton,right),
+                        new Insets(TOP,LEFT,BOTTON,RIGHT),
                         0,
                         0
                 ));
@@ -263,7 +276,7 @@ public class ProyectoCalculadora {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.BOTH,
-                        new Insets(top,left,botton,right),
+                        new Insets(TOP,LEFT,BOTTON,RIGHT),
                         0,
                         0
                 ));
@@ -282,7 +295,7 @@ public class ProyectoCalculadora {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.BOTH,
-                        new Insets(top,left,botton,right),
+                        new Insets(TOP,LEFT,BOTTON,RIGHT),
                         0,
                         0
                 ));
@@ -302,7 +315,7 @@ public class ProyectoCalculadora {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.BOTH,
-                        new Insets(top,left,botton,right),
+                        new Insets(TOP,LEFT,BOTTON,RIGHT),
                         0,
                         0
                 ));
@@ -321,7 +334,7 @@ public class ProyectoCalculadora {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.BOTH,
-                        new Insets(top,left,botton,right),
+                        new Insets(TOP,LEFT,BOTTON,RIGHT),
                         0,
                         0
                 ));
@@ -340,7 +353,7 @@ public class ProyectoCalculadora {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.BOTH,
-                        new Insets(top,left,botton,right),
+                        new Insets(TOP,LEFT,BOTTON,RIGHT),
                         0,
                         0
                 ));
@@ -353,24 +366,24 @@ public class ProyectoCalculadora {
                 new GridBagConstraints(
                         0,
                         3,
-                        2,
+                        1,
                         1,
                         1.0,
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.BOTH,
-                        new Insets(top,left,botton,right),
+                        new Insets(TOP,LEFT,BOTTON,RIGHT),
                         0,
                         0
                 ));
         boton0.addActionListener(accionBotones());
 
 
-      /*  JButton botonComa = new JButton(",");
+        JButton botonComa = new JButton(".");
         botonComa.setBackground(Color.white);
         panelBotones.add(botonComa,
                 new GridBagConstraints(
-                        0,
+                        1,
                         3,
                         1,
                         1,
@@ -378,12 +391,12 @@ public class ProyectoCalculadora {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.BOTH,
-                        new Insets(top,left,botton,right),
+                        new Insets(TOP,LEFT,BOTTON,RIGHT),
                         0,
                         0
                 ));
         botonComa.addActionListener(accionBotones());
-*/
+
 
         JButton botonIgual = new JButton("=");
         botonIgual.setBackground(Color.ORANGE);
@@ -397,7 +410,7 @@ public class ProyectoCalculadora {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.BOTH,
-                        new Insets(top,left,botton,right),
+                        new Insets(TOP,LEFT,BOTTON,RIGHT),
                         0,
                         0
                 ));
@@ -422,6 +435,8 @@ public class ProyectoCalculadora {
                 ));
         botonBorrar.addActionListener(accionBotonAC());
 
+        //Pantalla que se situara abajo del panel numerico para lanzar Errores
+
         pantallaError = new JLabel();
         panelBotones.add(pantallaError,
                 new GridBagConstraints(
@@ -445,13 +460,18 @@ public class ProyectoCalculadora {
         ActionListener ac = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Metemos en una variable String el numero del boton selccionado
                 String entrada = e.getActionCommand();
 
+                //Antes de nada al iniciar la calculadora por primera vez comrpobaremos que no hay ningun numero
+                //para evitar errores
                 if (inicio) {
                     pantalla.setText("");
+                    //Una vez iniciada inicio es false para que no entre en la condicion if
                     inicio = false;
                 }
 
+                //He imprimo el numero anterior en caso de que haya y el numero cogido en la variable String
                 pantalla.setText(pantalla.getText() + entrada);
 
             }
@@ -474,19 +494,24 @@ public class ProyectoCalculadora {
 
     private static double cogerCifra() {
 
-        //Creamos varias variables
+        //Este metodo lo creamos para coger la cifra que hay en pantalla, este metodo lo usaremos en el metodo del botonIgual
+        //para las operacciones y dejar el codigo mas limpio
 
         String result = "";
         String resultPantalla = pantalla.getText();
         double resultNum = 0;
 
+        //Metemos el numero en un array para pasar los numeros a double
         char[] num = resultPantalla.toCharArray();
 
+        //Despues lo recorremos y lo metemos en una variable String
         for (int i = 0; i < num.length; i++) {
             result += num[i];
 
         }
-        resultNum = Integer.parseInt(result);
+
+        //Una vez tengamos el numero entero lo pasamos a double y lo retornamos
+        resultNum = Double.parseDouble(result);
 
         return resultNum;
     }
@@ -497,11 +522,14 @@ public class ProyectoCalculadora {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                //Para asegurar el funcionamiento de la app hemos definido un try catch para capturar el error en caso de que dejen algun campo vacio
+                // y alnzar un mensaje, este mensaje sera lanzado a la pantalla de errores
                 try {
-
 
                 String monedaCambio1;
                 String monedaCambio2;
+
+                //Definimos el precio de cadas moneda dependiendo del cambio que hagamos
 
                 //EUROS
                 final double EUROSDOLAR = 1.05;
@@ -533,23 +561,32 @@ public class ProyectoCalculadora {
                 final double PESOSLIBRA = 0.00235;
                 final double PESOSEURO = 0.00272;
 
+                //Hacemos uso del metodo cogerCifra y lo metemos en una variable double
+
                 double numPantalla = cogerCifra();
                 double resultNumerico = 0;
                 String resultString = "";
 
+                //Metemos en dos variables cada seleccion d elos desplegables
                 monedaCambio1 = (String) cambio1.getSelectedItem();
                 monedaCambio2 = (String) cambio2.getSelectedItem();
 
+                //Comprobamos si ambos desplegables sean iguales
                 if(monedaCambio1 == monedaCambio2){
+                    //En caso de que sean lanzamos un error a la pantalla de errores
                     pantallaError.setText("Las monedas no pueden ser iguales");
 
                 }else {
-
+                    //En caso de que sean distintos difiniremos una condicion switch para ir cogiendo la primera moneda seleccionada
 
                     switch (monedaCambio1) {
 
                         //EUROS A OTRA MONEDA
                         case "Euros":
+
+                            //Dentro de cada cambio1 definiremos un swtich para comprobar la seleccion del desplegable2
+                            //y despues hacer la operacion adecuada
+
                             switch (monedaCambio2) {
                                 case "Dolar":
                                     resultNumerico = numPantalla * EUROSDOLAR;
