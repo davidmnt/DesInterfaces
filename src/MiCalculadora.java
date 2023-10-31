@@ -10,6 +10,7 @@ public class MiCalculadora {
     private static boolean inicio;
     private static JTextField pantalla;
     private static ArrayList<Double> ArrayNumeros;
+    private static Double numDouble;
     public static void main(String[] args) {
         inicio = true;
 
@@ -128,7 +129,7 @@ public class MiCalculadora {
         JButton botonIgual = new JButton("=");
         botonIgual.setBackground(Color.ORANGE);
         panelBotones.add(botonIgual);
-       // botonIgual.addActionListener(accionBotonIgual(pantalla));
+       botonIgual.addActionListener(accionBotonIgual(pantalla));
 
         JButton MasMenos = new JButton("+/-");
         MasMenos.setBackground(Color.ORANGE);
@@ -169,17 +170,22 @@ public class MiCalculadora {
         };
         return ac;
     }
-    private static ActionListener accionBotonSuma(JTextField pantalla){
+    private static ActionListener accionBotonSigno(JTextField pantalla){
 
         ActionListener ac = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String signo = e.getActionCommand();
                 String num = pantalla.getText().toString();
-                Double numDouble = Double.parseDouble(num);
-                ArrayNumeros.add(numDouble);
+                 numDouble = Double.parseDouble(num);
 
-                pantalla.setText(pantalla.getText() + "+");
+
+                switch (signo){
+                    case "+":  pantalla.setText(pantalla.getText() + "+");break;
+                    case "-":  pantalla.setText(pantalla.getText() + "-");break;
+                    case "*":  pantalla.setText(pantalla.getText() + "*");break;
+                    case "/":  pantalla.setText(pantalla.getText() + "/");
+                }
 
             }
         };
@@ -200,85 +206,50 @@ public class MiCalculadora {
     }
 
 
-   /* private static ActionListener accionBotonIgual(JTextField pantalla){
+    private static ActionListener accionBotonIgual(JTextField pantalla){
 
         ActionListener ac = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double result = 0;
+               double result = 0;
+                int contTotal = 0;
                 char operacion = 0;
-                char operacion2 = 0;
+                String num1 = "";
+                String num2 = "";
 
+                //pasamos el numero a un Array de char
+                char[] numChar = pantalla.getText().toString().toCharArray();
 
+                //Hacemos un bucle para sacar el primer numero hasta el signo de operacion
 
-                    //Segun el signo hacemos la operacion correspondiente
-                    switch (operacion) {
-                        case '+':
-                            switch (operacion2){
-                                case '+':
-                                    result = numero1+numero2+numero3;
-                                    break;
-                                case '-':
-                                    result = numero1 + numero2 - numero3;
-                                    break;
-                                case '*':
-                                    result = numero1+numero2*numero3;
-                                    break;
-                                case '/':
-                                    result = numero1+numero2/numero3;
-                                    break;
-                            }
-                            break;
-
-                        case '-':
-                            switch (operacion2){
-                                case '+':
-                                    result = numero1- numero2+numero3;
-                                    break;
-                                case '-':
-                                    result = numero1 - numero2 - numero3;
-                                    break;
-                                case '*':
-                                    result = numero1-numero2*numero3;
-                                    break;
-                                case '/':
-                                    result = numero1-numero2/numero3;
-                                    break;
-                            }
-                            break;
-                        case '/':
-                            switch (operacion2){
-                                case '+':
-                                    result = numero1/numero2+numero3;
-                                    break;
-                                case '-':
-                                    result = numero1 / numero2 - numero3;
-                                    break;
-                                case '*':
-                                    result = numero1/numero2*numero3;
-                                    break;
-                                case '/':
-                                    result = numero1/numero2/numero3;
-                                    break;
-                            }
-                            break;
-                        case '*':
-                            switch (operacion2){
-                                case '+':
-                                    result = numero1*numero2+numero3;
-                                    break;
-                                case '-':
-                                    result = numero1 * numero2 - numero3;
-                                    break;
-                                case '*':
-                                    result = numero1*numero2*numero3;
-                                    break;
-                                case '/':
-                                    result = numero1*numero2/numero3;
-                            }
+                for (int i = 0; i < numChar.length; i++) {
+                    //Forzamos un break para una vez llegado al signo pare de concatenar numeros al num1
+                    if (numChar[i] == '+' || numChar[i] == '-' || numChar[i] == '*' || numChar[i] == '/') {
+                        operacion = pantalla.getText().toString().charAt(contTotal);
+                        break;
                     }
+                    //Mientras el bucle no detecte un signo de operacion va a concatenar el numero y sumar el contador
+                    if (numChar[i] != '+' || numChar[i] != '-' || numChar[i] != '*' || numChar[i] != '/') {
+                        num1 += pantalla.getText().toString().charAt(i);
+                        contTotal++;
+                    }
+                }
 
-                }else {
+
+                //Luego hacemos otro bucle para para sacra el num2 inicializando el cont del for anterior +1
+                for (int i = contTotal + 1; i < numChar.length; i++) {
+                    num2 += String.valueOf(pantalla.getText().toString().charAt(i));
+                }
+
+
+                //En caso de que alguno de los numeros este vacio lanzaremos un error a la app
+
+                    //Pasamos los numeros de String a int
+                    double numero1 = Double.parseDouble(num1);
+                    double numero2 = Double.parseDouble(num2);
+                    //Metemos en una variable el signo, que lo sacamos gracias al contador, ya que forzamos con un break el bucle para que pare cuando
+                    //llegue a un signo, lo que significa que si el numero1 es 12+ el contador sera igual a 2.
+
 
                     //Segun el signo hacemos la operacion correspondiente
                     switch (operacion) {
@@ -294,18 +265,16 @@ public class MiCalculadora {
                         case '*':
                             result = numero1 * numero2;
                     }
-                }
 
                     //Pasamos el resultado double a String para pasarlo por pantalla
                     String resultado = "" + result;
-
 
                     pantalla.setText(resultado);
 
             }
         };
         return ac;
-    }*/
+    }
 
 
 

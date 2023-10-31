@@ -10,7 +10,10 @@ public class Tablas extends AbstractTableModel {
         Nif("Nif"),
         Name("Name"),
         apellidos("apellidos"),
-        Edad("Edad");
+        Edad("Edad"),
+        Contraseña("Contraseña"),
+
+        Email("Email");
 
         final String header;
 
@@ -21,7 +24,7 @@ public class Tablas extends AbstractTableModel {
 
     private List<Estudiantes> estudiantes;
 
-    public Tablas() {
+    public Tablas(List<Estudiantes> estudiantes) {
         super();
         this.estudiantes = estudiantes;
 
@@ -51,8 +54,11 @@ public class Tablas extends AbstractTableModel {
                 return estu.getApellidos();
             case Nif:
                 return estu.getNif();
-            case Edad:
-                return estu.getEdad();
+            case Email:
+                return estu.getEmail();
+            case Contraseña:
+                return estu.getContraseña();
+
             default:
                 throw new RuntimeException("No existe la columna" + columnIndex);
         }

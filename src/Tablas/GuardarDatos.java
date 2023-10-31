@@ -1,19 +1,28 @@
 package Tablas;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
-public class main {
-    static List<Estudiantes> estudiantes;
-    static Tablas tab = new Tablas(estudiantes);
+public class GuardarDatos {
+
+    static int idDatos = 0;
     public static void main(String[] args) {
+
         JFrame ventana = new JFrame();
         ventana.setVisible(true);
-        ventana.setBounds(0, 0, 550, 550);
+        ventana.setBounds(0, 0, 700, 850);
         ventana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("id");
+        modelo.addColumn("nombre");
+        modelo.addColumn("apellidos");
+        modelo.addColumn("dni");
+        modelo.addColumn("email");
+        modelo.addColumn("contraseña");
 
 
         JPanel panelPinc = new JPanel();
@@ -188,17 +197,17 @@ public class main {
                         1,
                         1.0,
                         1.0,
-                        GridBagConstraints.WEST,
+                        GridBagConstraints.EAST,
                         GridBagConstraints.HORIZONTAL,
-                        new Insets(0,0,0,30),
+                        new Insets(0,00,0,30),
                         0,
                         0
                 ));
 
-        JButton botonAñadir = new JButton("Enviar");
-        panelPinc.add(botonAñadir,
+        JLabel error = new JLabel();
+        panelPinc.add(error,
                 new GridBagConstraints(
-                        0,
+                        1,
                         6,
                         1,
                         1,
@@ -206,36 +215,14 @@ public class main {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.HORIZONTAL,
-                        new Insets(0,0,0,20),
+                        new Insets(0,00,0,30),
                         0,
                         0
                 ));
 
-        botonAñadir.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String name = nombre.getText();
-                String apell = apellido.getText();
-                String nif = dni.getText();
-                String mail = email.getText();
-                String pass = contraseña.getPassword().toString();
 
-                if(nif.isEmpty() || pass.isEmpty()){
-                    tab.añadir(new Estudiantes(name, apell,mail));
-                    tab.fireTableDataChanged();
-                }else {
-                    tab.añadir(new Estudiantes(nif,name, apell,mail,pass));
-                    tab.fireTableDataChanged();
-                }
-
-
-            }
-        });
-
-        JScrollPane js = new JScrollPane();
-        JTable tabla = new JTable();
-        js.add(tabla);
-        panelPinc.add(js,
+        JButton botonAñadir = new JButton("Enviar");
+        panelPinc.add(botonAñadir,
                 new GridBagConstraints(
                         0,
                         7,
@@ -245,16 +232,123 @@ public class main {
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.HORIZONTAL,
-                        new Insets(0,0,0,20),
+                        new Insets(0,20,0,10),
+                        10,
+                        0
+                ));
+        JButton botonEliminar = new JButton("Eliminar");
+        panelPinc.add(botonEliminar,
+                new GridBagConstraints(
+                        1,
+                        7,
+                        1,
+                        1,
+                        1.0,
+                        1.0,
+                        GridBagConstraints.WEST,
+                        GridBagConstraints.HORIZONTAL,
+                        new Insets(0,20,0,20),
+                        0,
+                        0
+                ));
+
+        JButton botonNuevo = new JButton("Nuevo");
+        panelPinc.add(botonNuevo,
+                new GridBagConstraints(
+                        0,
+                        8,
+                        1,
+                        1,
+                        1.0,
+                        1.0,
+                        GridBagConstraints.CENTER,
+                        GridBagConstraints.HORIZONTAL,
+                        new Insets(0,20,0,10),
+                        10,
+                        0
+                ));
+        JButton botonMod = new JButton("Modificar");
+        panelPinc.add(botonMod,
+                new GridBagConstraints(
+                        1,
+                        8,
+                        1,
+                        1,
+                        1.0,
+                        1.0,
+                        GridBagConstraints.WEST,
+                        GridBagConstraints.HORIZONTAL,
+                        new Insets(0,20,0,20),
                         0,
                         0
                 ));
 
 
-        ventana.add(panelPinc);
+        botonAñadir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                idDatos++;
+                String name = nombre.getText();
+                String apell = apellido.getText();
+                String nif = dni.getText();
+                String mail = email.getText();
+                String pass = contraseña.getPassword().toString();
+
+
+                if(!name.isEmpty() && !apell.isEmpty() && !mail.isEmpty() && nif.isEmpty() || pass.isEmpty()){
+
+                    String[] obj = {String.valueOf(idDatos),name, apell,"",mail,""};
+                    modelo.addRow(obj);
+
+                }
+                if(!name.isEmpty() && !apell.isEmpty() && !mail.isEmpty() && !nif.isEmpty() && !pass.isEmpty()){
+                    String[] obj = {String.valueOf(idDatos),name, apell,nif,mail,pass};
+                    modelo.addRow(obj);
+
+                }else {
+                    error.setText("Error al introducir variables en la tabla, por favor introduce datos");
+                }
 
 
 
+            }
+        });
+
+        botonNuevo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nombre.setText("");
+                apellido.setText("");
+                dni.setText("");
+                email.setText("");
+                contraseña.setText("");
+            }
+        });
+
+
+        JTable tabla = new JTable(modelo);
+        JScrollPane js = new JScrollPane(tabla);
+        panelPinc.add(js,
+                new GridBagConstraints(
+                        0,
+                        9,
+                        3,
+                        1,
+                        1.0,
+                        1.0,
+                        GridBagConstraints.CENTER,
+                        GridBagConstraints.BOTH,
+                        new Insets(0,5,0,5),
+                        0,
+                        0
+                ));
+
+
+        ventana.add(panelPinc, BorderLayout.CENTER);
 
     }
+
+
+
 }

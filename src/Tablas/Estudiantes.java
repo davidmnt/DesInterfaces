@@ -1,20 +1,37 @@
 package Tablas;
 
 public class Estudiantes {
-    private int id  = 0;
+    private int id  = 1;
     private String nif;
     private String nombre;
     private String apellidos;
-    private int edad;
+    private String email;
+    private String contraseña;
 
-    public Estudiantes(String nif, String nombre, String apellidos, int edad) {
+    public Estudiantes(){}
+
+    public Estudiantes(String nombre, String apellidos, String email) {
+        id = id;
+        nif = "";
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email =email;
+        contraseña = "";
+        id++;
+    }
+
+    public Estudiantes(String nif, String nombre, String apellidos, String email,String contraseña) {
         id = id;
         this.nif = nif;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.edad = edad;
-
+        this.email =email;
+        this.contraseña = contraseña;
         id++;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNif() {
@@ -41,23 +58,19 @@ public class Estudiantes {
         this.apellidos = apellidos;
     }
 
-    public int getEdad() {
-        return edad;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Estudiantes{" +
-                "nif='" + nif + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellidos='" + apellidos + '\'' +
-                ", edad=" + edad +
-                '}';
+    public String getContraseña() {
+        return contraseña;
     }
 
-
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
 }
