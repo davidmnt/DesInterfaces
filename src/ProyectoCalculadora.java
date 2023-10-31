@@ -647,10 +647,8 @@ public class ProyectoCalculadora {
                 }catch (NumberFormatException ei){
                     pantallaError.setText("No puedes dejar el campo vacio, introduce parametros");
                 }
-
             }
         };
         return ac;
     }
-
 }
