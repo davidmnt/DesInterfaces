@@ -220,7 +220,6 @@ public class GuardarDatos {
                         0
                 ));
 
-
         JButton botonAñadir = new JButton("Enviar");
         panelPinc.add(botonAñadir,
                 new GridBagConstraints(
@@ -236,6 +235,7 @@ public class GuardarDatos {
                         10,
                         0
                 ));
+
         JButton botonEliminar = new JButton("Eliminar");
         panelPinc.add(botonEliminar,
                 new GridBagConstraints(
@@ -267,6 +267,7 @@ public class GuardarDatos {
                         10,
                         0
                 ));
+
         JButton botonMod = new JButton("Modificar");
         panelPinc.add(botonMod,
                 new GridBagConstraints(
@@ -283,7 +284,6 @@ public class GuardarDatos {
                         0
                 ));
 
-
         botonAñadir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -294,7 +294,6 @@ public class GuardarDatos {
                 String nif = dni.getText();
                 String mail = email.getText();
                 String pass = contraseña.getPassword().toString();
-
 
                 if(!name.isEmpty() && !apell.isEmpty() && !mail.isEmpty() && nif.isEmpty() || pass.isEmpty()){
 
@@ -309,9 +308,6 @@ public class GuardarDatos {
                 }else {
                     error.setText("Error al introducir variables en la tabla, por favor introduce datos");
                 }
-
-
-
             }
         });
 
@@ -326,13 +322,12 @@ public class GuardarDatos {
             }
         });
 
-
         JTable tabla = new JTable(modelo);
         JScrollPane js = new JScrollPane(tabla);
         panelPinc.add(js,
                 new GridBagConstraints(
                         0,
-                        9,
+                        10,
                         3,
                         1,
                         1.0,
@@ -344,11 +339,28 @@ public class GuardarDatos {
                         0
                 ));
 
+        botonEliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int idBorrar = tabla.getSelectedRow();
+                modelo.removeRow(idBorrar);
+                idDatos = 0;
+            }
+        });
+
+        botonMod.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int idMod = tabla.getSelectedRow();
+                 //Terminar, la idea es hacer un switrch comparando los dat0os nuevos con los qwue ya existenm y en caso de que sean distintos cambiarlo
+
+            }
+        });
+
 
         ventana.add(panelPinc, BorderLayout.CENTER);
 
     }
-
-
 
 }
