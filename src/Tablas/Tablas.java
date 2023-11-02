@@ -22,17 +22,17 @@ public class Tablas extends AbstractTableModel {
         }
     }
 
-    private List<Estudiantes> estudiantes;
+    private List<Estudiantes> estudi;
 
     public Tablas(List<Estudiantes> estudiantes) {
         super();
-        this.estudiantes = estudiantes;
+        this.estudi = estudiantes;
 
     }
 
     @Override
     public int getRowCount() {
-        return estudiantes.size();
+        return estudi.size();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Tablas extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Estudiantes estu = estudiantes.get(rowIndex);
+        Estudiantes estu = estudi.get(rowIndex);
         switch (columnas.values()[columnIndex]) {
             case Name:
                 return estu.getNombre();
@@ -65,24 +65,24 @@ public class Tablas extends AbstractTableModel {
     }
 
     public void añadir(Estudiantes est){
-        estudiantes.add(est);
+        estudi.add(est);
     }
 
     public boolean actualizar(int rowIndex, Estudiantes est){
-        if(rowIndex>=estudiantes.size()){
+        if(rowIndex>=estudi.size()){
             return false;
         }else{
-            estudiantes.set(rowIndex, est);
+            estudi.set(rowIndex, est);
                 return true;
             }
         }
 
 
     public boolean borrar(int rowIndex){
-    if(rowIndex>=estudiantes.size()){
+    if(rowIndex>=estudi.size()){
         return false;
     }else{
-        estudiantes.remove(rowIndex);
+        estudi.remove(rowIndex);
             return true;
         }
     }

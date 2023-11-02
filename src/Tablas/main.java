@@ -7,9 +7,13 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class main {
-    static List<Estudiantes> estudiantes;
-    static Tablas tab = new Tablas(estudiantes);
+    static Estudiantes e = new Estudiantes();
+    static List<Estudiantes> estudi;
+    static Tablas tab = new Tablas(estudi);
     public static void main(String[] args) {
+
+        estudi.add(e);
+
         JFrame ventana = new JFrame();
         ventana.setVisible(true);
         ventana.setBounds(0, 0, 550, 550);
@@ -233,13 +237,13 @@ public class main {
         });
 
         JScrollPane js = new JScrollPane();
-        JTable tabla = new JTable();
+        JTable tabla = new JTable(tab);
         js.add(tabla);
         panelPinc.add(js,
                 new GridBagConstraints(
                         0,
                         7,
-                        1,
+                        3,
                         1,
                         1.0,
                         1.0,

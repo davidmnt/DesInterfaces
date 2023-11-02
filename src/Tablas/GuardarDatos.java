@@ -8,6 +8,11 @@ import java.awt.event.ActionListener;
 
 public class GuardarDatos {
 
+    static JTextField nombre;
+    static JTextField apellido;
+    static JTextField dni;
+    static JTextField email;
+    static JPasswordField contraseña;
     static int idDatos = 0;
     public static void main(String[] args) {
 
@@ -27,9 +32,10 @@ public class GuardarDatos {
 
         JPanel panelPinc = new JPanel();
         panelPinc.setLayout(new GridBagLayout());
-        panelPinc.setBounds(0,0,550,550);
+        panelPinc.setBounds(1,1,700,850);
 
         JLabel titulo = new JLabel("Registro de usuarios");
+        titulo.setFont(new Font("Arial", Font.BOLD,20));
         panelPinc.add(titulo,
                 new GridBagConstraints(
                         1,
@@ -44,11 +50,27 @@ public class GuardarDatos {
                         0,
                         0
                 ));
-        JLabel nombreLabel = new JLabel("Nombre:");
+        JLabel id = new JLabel("ID");
+        panelPinc.add(id,
+                new GridBagConstraints(
+                        1,
+                        1,
+                        1,
+                        1,
+                        1.0,
+                        1.0,
+                        GridBagConstraints.EAST,
+                        GridBagConstraints.HORIZONTAL,
+                        new Insets(0,0,0,0),
+                        0,
+                        0
+                ));
+
+        JLabel nombreLabel = new JLabel("*Nombre:");
         panelPinc.add(nombreLabel,
                 new GridBagConstraints(
                         0,
-                        1,
+                        2,
                         1,
                         1,
                         1.0,
@@ -60,11 +82,11 @@ public class GuardarDatos {
                         0
                 ));
 
-        JTextField nombre = new JTextField();
+        nombre = new JTextField();
         panelPinc.add(nombre,
                 new GridBagConstraints(
                         1,
-                        1,
+                        2,
                         1,
                         1,
                         1.0,
@@ -76,11 +98,11 @@ public class GuardarDatos {
                         0
                 ));
 
-        JLabel apellidoLabel = new JLabel("Apellido:");
+        JLabel apellidoLabel = new JLabel("*Apellido:");
         panelPinc.add(apellidoLabel,
                 new GridBagConstraints(
                         0,
-                        2,
+                        3,
                         1,
                         1,
                         1.0,
@@ -92,11 +114,11 @@ public class GuardarDatos {
                         0
                 ));
 
-        JTextField apellido = new JTextField();
+        apellido = new JTextField();
         panelPinc.add(apellido,
                 new GridBagConstraints(
                         1,
-                        2,
+                        3,
                         1,
                         1,
                         1.0,
@@ -112,7 +134,7 @@ public class GuardarDatos {
         panelPinc.add(dniLabel,
                 new GridBagConstraints(
                         0,
-                        3,
+                        4,
                         1,
                         1,
                         1.0,
@@ -124,11 +146,11 @@ public class GuardarDatos {
                         0
                 ));
 
-        JTextField dni = new JTextField();
+        dni = new JTextField();
         panelPinc.add(dni,
                 new GridBagConstraints(
                         1,
-                        3,
+                        4,
                         1,
                         1,
                         1.0,
@@ -140,11 +162,11 @@ public class GuardarDatos {
                         0
                 ));
 
-        JLabel emailLabel = new JLabel("Email:");
+        JLabel emailLabel = new JLabel("*Email:");
         panelPinc.add(emailLabel,
                 new GridBagConstraints(
                         0,
-                        4,
+                        5,
                         1,
                         1,
                         1.0,
@@ -156,11 +178,11 @@ public class GuardarDatos {
                         0
                 ));
 
-        JTextField email = new JTextField();
+        email = new JTextField();
         panelPinc.add(email,
                 new GridBagConstraints(
                         1,
-                        4,
+                        5,
                         1,
                         1,
                         1.0,
@@ -176,7 +198,7 @@ public class GuardarDatos {
         panelPinc.add(contraseñaLabel,
                 new GridBagConstraints(
                         0,
-                        5,
+                        6,
                         1,
                         1,
                         1.0,
@@ -188,11 +210,11 @@ public class GuardarDatos {
                         0
                 ));
 
-        JPasswordField contraseña = new JPasswordField();
+        contraseña = new JPasswordField();
         panelPinc.add(contraseña,
                 new GridBagConstraints(
                         1,
-                        5,
+                        6,
                         1,
                         1,
                         1.0,
@@ -204,34 +226,19 @@ public class GuardarDatos {
                         0
                 ));
 
-        JLabel error = new JLabel();
-        panelPinc.add(error,
-                new GridBagConstraints(
-                        1,
-                        6,
-                        1,
-                        1,
-                        1.0,
-                        1.0,
-                        GridBagConstraints.CENTER,
-                        GridBagConstraints.HORIZONTAL,
-                        new Insets(0,00,0,30),
-                        0,
-                        0
-                ));
 
-        JButton botonAñadir = new JButton("Enviar");
+        JButton botonAñadir = new JButton("Introducir");
         panelPinc.add(botonAñadir,
                 new GridBagConstraints(
-                        0,
-                        7,
+                        2,
+                        2,
                         1,
                         1,
                         1.0,
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.HORIZONTAL,
-                        new Insets(0,20,0,10),
+                        new Insets(0,20,0,20),
                         10,
                         0
                 ));
@@ -239,8 +246,8 @@ public class GuardarDatos {
         JButton botonEliminar = new JButton("Eliminar");
         panelPinc.add(botonEliminar,
                 new GridBagConstraints(
-                        1,
-                        7,
+                        2,
+                        3,
                         1,
                         1,
                         1.0,
@@ -255,15 +262,15 @@ public class GuardarDatos {
         JButton botonNuevo = new JButton("Nuevo");
         panelPinc.add(botonNuevo,
                 new GridBagConstraints(
-                        0,
-                        8,
+                        2,
+                        4,
                         1,
                         1,
                         1.0,
                         1.0,
                         GridBagConstraints.CENTER,
                         GridBagConstraints.HORIZONTAL,
-                        new Insets(0,20,0,10),
+                        new Insets(0,20,0,20),
                         10,
                         0
                 ));
@@ -271,8 +278,8 @@ public class GuardarDatos {
         JButton botonMod = new JButton("Modificar");
         panelPinc.add(botonMod,
                 new GridBagConstraints(
-                        1,
-                        8,
+                        2,
+                        5,
                         1,
                         1,
                         1.0,
@@ -288,25 +295,33 @@ public class GuardarDatos {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                idDatos++;
                 String name = nombre.getText();
                 String apell = apellido.getText();
                 String nif = dni.getText();
                 String mail = email.getText();
-                String pass = contraseña.getPassword().toString();
+                String pass = String.valueOf(contraseña.getPassword());
 
-                if(!name.isEmpty() && !apell.isEmpty() && !mail.isEmpty() && nif.isEmpty() || pass.isEmpty()){
+                if(!name.isEmpty() && !apell.isEmpty() && !mail.isEmpty() && nif.isEmpty() && !pass.isEmpty()){
 
-                    String[] obj = {String.valueOf(idDatos),name, apell,"",mail,""};
+                    String[] obj = {String.valueOf(idDatos),name, apell,"",mail,"True"};
                     modelo.addRow(obj);
+                    idDatos++;
+                    vaciarTF();
 
-                }
-                if(!name.isEmpty() && !apell.isEmpty() && !mail.isEmpty() && !nif.isEmpty() && !pass.isEmpty()){
-                    String[] obj = {String.valueOf(idDatos),name, apell,nif,mail,pass};
+                } else if(!name.isEmpty() && !apell.isEmpty() && !mail.isEmpty() && !nif.isEmpty() && pass.isEmpty()){
+                    String[] obj = {String.valueOf(idDatos),name, apell,nif,mail,"False"};
                     modelo.addRow(obj);
+                    idDatos++;
+                    vaciarTF();
+
+                }else if(!name.isEmpty() && !apell.isEmpty() && !mail.isEmpty() && !nif.isEmpty() && !pass.isEmpty()){
+                    String[] obj = {String.valueOf(idDatos),name, apell,nif,mail,"True"};
+                    modelo.addRow(obj);
+                    idDatos++;
+                    vaciarTF();
 
                 }else {
-                    error.setText("Error al introducir variables en la tabla, por favor introduce datos");
+                    JOptionPane.showMessageDialog( null,"Error al introducir variables en la tabla, por favor introduce datos");
                 }
             }
         });
@@ -314,11 +329,7 @@ public class GuardarDatos {
         botonNuevo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                nombre.setText("");
-                apellido.setText("");
-                dni.setText("");
-                email.setText("");
-                contraseña.setText("");
+                vaciarTF();
             }
         });
 
@@ -327,7 +338,7 @@ public class GuardarDatos {
         panelPinc.add(js,
                 new GridBagConstraints(
                         0,
-                        10,
+                        7,
                         3,
                         1,
                         1.0,
@@ -343,8 +354,14 @@ public class GuardarDatos {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int idBorrar = tabla.getSelectedRow();
-                modelo.removeRow(idBorrar);
-                idDatos = 0;
+
+             try {
+                 modelo.removeRow(idBorrar);
+             }catch (ArrayIndexOutOfBoundsException exce) {
+                 JOptionPane.showMessageDialog( null,"Seleciona una persona para eliminar");
+             }
+
+
             }
         });
 
@@ -353,14 +370,67 @@ public class GuardarDatos {
             public void actionPerformed(ActionEvent e) {
 
                 int idMod = tabla.getSelectedRow();
-                 //Terminar, la idea es hacer un switrch comparando los dat0os nuevos con los qwue ya existenm y en caso de que sean distintos cambiarlo
+                try {
+
+                    String nombreCambiar = nombre.getText();
+                    String apellidoCambiar = apellido.getText();
+                    String dniCambiar = dni.getText();
+                    String mailCambiar = email.getText();
+                    String passCambiar = contraseña.toString();
+
+                    String nombreIntroducido = (String) tabla.getValueAt(idMod,1);
+                    String apellidoIntroducido = (String) tabla.getValueAt(idMod,2);
+                    String dniIntroducido = (String) tabla.getValueAt(idMod,3);
+                    String mailIntroducido = (String) tabla.getValueAt(idMod,4);
+                    String passIntroducido = (String) tabla.getValueAt(idMod,5);
+
+                    nombre.setText(nombreIntroducido);
+                    apellido.setText(apellidoIntroducido);
+                    dni.setText(dniIntroducido);
+                    email.setText(mailIntroducido);
+                    contraseña.setText(passIntroducido);
+
+                    for(int i=0;i<tabla.getRowCount();i++) {
+
+                        if (!nombreCambiar.equals(nombreIntroducido)) {
+                            tabla.setValueAt(nombreCambiar, idMod, 1);
+                        }
+
+                        if (!apellidoCambiar.equals(apellidoIntroducido)) {
+                            tabla.setValueAt(apellidoCambiar, idMod, 2);
+                        }
+
+                        if (!dniCambiar.equals(dniIntroducido)) {
+                            tabla.setValueAt(dniCambiar, idMod, 3);
+                        }
+
+                        if (!mailCambiar.equals(mailIntroducido)) {
+                            tabla.setValueAt(mailCambiar, idMod, 4);
+                        }
+
+                        if (!passCambiar.equals(passIntroducido)) {
+                            tabla.setValueAt(passCambiar, idMod, 5);
+                        }
+
+                    }
+
+            }catch (ArrayIndexOutOfBoundsException exce) {
+                JOptionPane.showMessageDialog( null,"Seleciona una persona para eliminar");
+            }
 
             }
         });
 
-
         ventana.add(panelPinc, BorderLayout.CENTER);
 
+    }
+
+    private static void vaciarTF(){
+        nombre.setText("");
+        apellido.setText("");
+        dni.setText("");
+        email.setText("");
+        contraseña.setText("");
     }
 
 }
