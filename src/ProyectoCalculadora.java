@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
+import java.security.Key;
 import java.util.ArrayList;
 
 public class ProyectoCalculadora {
@@ -15,6 +13,7 @@ public class ProyectoCalculadora {
     private static JComboBox<String> cambio1;
     private static JComboBox<String> cambio2;
     private static JLabel pantallaError;
+    private static JLabel pantallaErrorString;
     private static ArrayList<String> monedas = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -184,7 +183,6 @@ public class ProyectoCalculadora {
 
         panelBotones.setLayout(new GridBagLayout());
         panelBotones.setBounds(10, 10, 350, 400);
-
 
 
         JButton boton7 = new JButton("7");
@@ -453,7 +451,28 @@ public class ProyectoCalculadora {
                         0
                 ));
 
+        pantallaErrorString = new JLabel();
+        panelBotones.add(pantallaErrorString,
+                new GridBagConstraints(
+                        0,
+                        6,
+                        3,
+                        1,
+                        1.0,
+                        1.0,
+                        GridBagConstraints.CENTER,
+                        GridBagConstraints.BOTH,
+                        new Insets(10,10,10,10),
+                        0,
+                        0
+                ));
+
+
+
     }
+
+
+
 
     private static ActionListener accionBotones() {
 
@@ -524,7 +543,7 @@ public class ProyectoCalculadora {
 
                 //Para asegurar el funcionamiento de la app hemos definido un try catch para capturar el error en caso de que dejen algun campo vacio
                 // y alnzar un mensaje, este mensaje sera lanzado a la pantalla de errores
-                try {
+
 
                 String monedaCambio1;
                 String monedaCambio2;
@@ -561,6 +580,9 @@ public class ProyectoCalculadora {
                 final double PESOSLIBRA = 0.00235;
                 final double PESOSEURO = 0.00272;
 
+
+                try{
+
                 //Hacemos uso del metodo cogerCifra y lo metemos en una variable double
 
                 double numPantalla = cogerCifra();
@@ -575,6 +597,7 @@ public class ProyectoCalculadora {
                 if(monedaCambio1 == monedaCambio2){
                     //En caso de que sean lanzamos un error a la pantalla de errores
                     pantallaError.setText("Las monedas no pueden ser iguales");
+                    pantallaErrorString.setText("");
 
                 }else {
                     //En caso de que sean distintos difiniremos una condicion switch para ir cogiendo la primera moneda seleccionada
@@ -678,11 +701,13 @@ public class ProyectoCalculadora {
 
                     resultString = resultNumerico + "";
                     pantalla1.setText(numPantalla + " " + monedaCambio1 + " " + resultString + " " + monedaCambio2);
-
+                    pantallaError.setText("");
                 }
 
                 }catch (NumberFormatException ei){
                     pantallaError.setText("No puedes dejar el campo vacio, introduce parametros");
+                    pantallaErrorString.setText("o introducir caracteres que no sean numeros");
+
                 }
             }
         };

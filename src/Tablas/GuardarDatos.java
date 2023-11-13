@@ -320,7 +320,12 @@ public class GuardarDatos {
                     idDatos++;
                     vaciarTF();
 
-                }else {
+                }else if(!name.isEmpty() && !apell.isEmpty() && !mail.isEmpty() && nif.isEmpty() && pass.isEmpty()) {
+                String[] obj = {String.valueOf(idDatos), name, apell, " ", mail, "False"};
+                modelo.addRow(obj);
+                idDatos++;
+                vaciarTF();
+            }else {
                     JOptionPane.showMessageDialog( null,"Error al introducir variables en la tabla, por favor introduce datos");
                 }
             }
@@ -384,11 +389,6 @@ public class GuardarDatos {
                     String mailIntroducido = (String) tabla.getValueAt(idMod,4);
                     String passIntroducido = (String) tabla.getValueAt(idMod,5);
 
-                    nombre.setText(nombreIntroducido);
-                    apellido.setText(apellidoIntroducido);
-                    dni.setText(dniIntroducido);
-                    email.setText(mailIntroducido);
-                    contraseña.setText(passIntroducido);
 
                     for(int i=0;i<tabla.getRowCount();i++) {
 
