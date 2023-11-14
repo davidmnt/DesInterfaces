@@ -4,8 +4,11 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class formulario {
+
     private JButton enviarButton;
     private JLabel Pass;
     private JPanel panelPrin;
@@ -29,7 +32,7 @@ public class formulario {
     private JLabel titulo;
     static int idDatos = 0;
 
-    public formulario() {
+    public formulario() throws SQLException {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("id");
         modelo.addColumn("nombre");
@@ -94,6 +97,8 @@ public class formulario {
                 }else {
                     JOptionPane.showMessageDialog( null,"Error al introducir variables en la tabla, por favor introduce datos");
                 }
+
+
 
             }
         });
@@ -186,12 +191,14 @@ public class formulario {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         JFrame frame = new JFrame("formulario");
         frame.setContentPane(new formulario().panelPrin);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(0,0,550,550);
         frame.setVisible(true);
+
+
 
     }
 
