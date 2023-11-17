@@ -32,7 +32,9 @@ public class GuardarDatos {
 
         JFrame ventana = new JFrame();
         ventana.setVisible(true);
-        ventana.setBounds(0, 0, 700, 850);
+        ventana.setBounds(0, 0, 800, 950);
+        ventana.setResizable(false);
+        ventana.setPreferredSize(new Dimension());
         ventana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         DefaultTableModel modelo = new DefaultTableModel();
@@ -45,8 +47,9 @@ public class GuardarDatos {
 
 
         JPanel panelPinc = new JPanel();
+        panelPinc.setPreferredSize(new Dimension());
         panelPinc.setLayout(new GridBagLayout());
-        panelPinc.setBounds(1, 1, 700, 850);
+        panelPinc.setBounds(1, 1, 600, 750);
 
         JLabel titulo = new JLabel("Registro de usuarios");
         titulo.setFont(new Font("Arial", Font.BOLD, 20));
@@ -305,6 +308,22 @@ public class GuardarDatos {
                         0
                 ));
 
+        JLabel LabelMod = new JLabel();
+        panelPinc.add(LabelMod,
+                new GridBagConstraints(
+                        2,
+                        6,
+                        1,
+                        1,
+                        1.0,
+                        1.0,
+                        GridBagConstraints.WEST,
+                        GridBagConstraints.HORIZONTAL,
+                        new Insets(0, 20, 0, 20),
+                        0,
+                        0
+                ));
+
 
         String queryResult = "SELECT * FROM USUARIOS";
         Statement stmt = conn.createStatement();
@@ -440,7 +459,7 @@ public class GuardarDatos {
             public void actionPerformed(ActionEvent e) {
 
                 int idMod = tabla.getSelectedRow();
-                int id = (int) tabla.getValueAt(idMod,0);
+                String idRow = (String) tabla.getValueAt(idMod,0);
                 int cont = 0;
                 String nombreIntroducido = "";
                 String apellidoIntroducido = "";
@@ -462,19 +481,19 @@ public class GuardarDatos {
                          apellidoCambiar = apellido.getText();
                          dniCambiar = dni.getText();
                          mailCambiar = email.getText();
-                         passCambiar = contraseña.toString();
+
 
                         nombreIntroducido = (String) tabla.getValueAt(idMod, 1);
                         apellidoIntroducido = (String) tabla.getValueAt(idMod, 2);
                         dniIntroducido = (String) tabla.getValueAt(idMod, 3);
                         mailIntroducido = (String) tabla.getValueAt(idMod, 4);
-                        passIntroducido = (String) tabla.getValueAt(idMod, 5);
+
 
                         nombre.setText(nombreIntroducido);
                         apellido.setText(apellidoIntroducido);
                         dni.setText(dniIntroducido);
                         email.setText(mailIntroducido);
-                        contraseña.setText(passIntroducido);
+                        LabelMod.setText("Porfavor modifica el usuario y vuelve a pulsar Modificar");
                         cont = 1;
                     }
 
@@ -486,7 +505,7 @@ public class GuardarDatos {
                         ps = conn.prepareStatement(query);
 
                         ps.setString(1, nombreCambiar);
-                        ps.setString(2, String.valueOf(idMod));
+                        ps.setString(2, idRow);
                         ps.execute();
 
 
@@ -496,7 +515,7 @@ public class GuardarDatos {
                         ps = conn.prepareStatement(query);
 
                         ps.setString(1, apellidoCambiar);
-                        ps.setString(2, id);
+                        ps.setString(2, idRow);
                         ps.execute();
 
 
@@ -506,7 +525,7 @@ public class GuardarDatos {
                         ps = conn.prepareStatement(query);
 
                         ps.setString(1, dniCambiar);
-                        ps.setString(2, String.valueOf(idMod));
+                        ps.setString(2, idRow);
                         ps.execute();
 
 
@@ -516,21 +535,10 @@ public class GuardarDatos {
                         ps = conn.prepareStatement(query);
 
                         ps.setString(1, mailCambiar);
-                        ps.setString(2, String.valueOf(idMod));
+                        ps.setString(2, idRow);
                         ps.execute();
 
-
-                        tabla.setValueAt(passCambiar, idMod, 5);
-
-                        query = "UPDATE USUARIOS SET pass = ? WHERE id = ?";
-                        ps = conn.prepareStatement(query);
-
-                        ps.setString(1, passCambiar);
-                        ps.setString(2, String.valueOf(idMod));
-                        ps.execute();
-                        cont = 0;
-
-
+                        cont=0;
                     }
 
                 }catch(ArrayIndexOutOfBoundsException exce){
