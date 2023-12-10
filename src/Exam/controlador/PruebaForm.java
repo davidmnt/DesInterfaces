@@ -10,7 +10,6 @@ import java.sql.SQLException;
 
 public class PruebaForm {
     private JTextField userField;
-    static conM c = null;
     private JTextField MailField;
     private JTextField dniField;
     private JTable ta;
@@ -28,6 +27,7 @@ public class PruebaForm {
     private int idDatos;
 
     PruebaForm(){
+        conM c = new conM();
 
         DefaultTableModel m = new DefaultTableModel();
         m.addColumn("id");
@@ -52,7 +52,7 @@ public class PruebaForm {
                     m.addRow(obj);
                     idDatos++;
                     try {
-                        c.introducirPene(name,pass);
+                        c.introducirPene(idDatos,name,pass);
                     } catch (SQLException ex) {
                         ex.getMessage();
                     }
@@ -62,7 +62,7 @@ public class PruebaForm {
                     m.addRow(obj);
                     idDatos++;
                     try {
-                        c.introducirPene(name,pass);
+                        c.introducirPene(idDatos,name,pass);
                     } catch (SQLException ex) {
                         ex.getMessage();
                     }
@@ -73,7 +73,7 @@ public class PruebaForm {
                     m.addRow(obj);
                     idDatos++;
                     try {
-                        c.introducirPene(name,pass);
+                        c.introducirPene(idDatos,name,pass);
                     } catch (SQLException ex) {
                         ex.getMessage();
                     }
@@ -84,7 +84,7 @@ public class PruebaForm {
                     m.addRow(obj);
                     idDatos++;
                     try {
-                        c.introducirPene(name,pass);
+                        c.introducirPene(idDatos,name,pass);
                     } catch (SQLException ex) {
                         ex.getMessage();
                     }
@@ -104,7 +104,6 @@ public class PruebaForm {
 
 
     public static void main(String[] args) {
-         c = new conM();
         JFrame frame = new JFrame("PruebaForm");
         frame.setBounds(0,0,550,500);
         frame.setContentPane(new PruebaForm().panelPrin);
